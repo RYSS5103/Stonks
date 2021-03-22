@@ -1,0 +1,17 @@
+import json
+webhook = 'https://discordapp.com/api/webhooks/609119785015312414/HOkHGPWqfPfLJHpSp15XZ9dUNhUDly_DKQ8OwLgk3Rw0-4G08gx0mOrKN3FKhompb5ig'
+session = requests.session()
+symbol = session.get("https://www.binance.com/en/trade/DOGE_GBP")
+
+data = {}
+data["content"] = json.dumps(symbol.json()["Global Quote"]
+data["username"] = "AAPL"
+
+result = requests.post(webhook, data=json.dumps(data), headers={"Content-Type": "application/json"})
+
+try:
+  result.raise_for_status()
+except requests.exceptions.HTTPError as err:
+  print(err)
+else:
+  print("Payload delivered successfully, code {}.".format(result.status_code))
